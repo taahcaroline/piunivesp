@@ -1,0 +1,53 @@
+/* Botão de adicionar */
+#add-link{
+    text-decoration:none;
+}
+.add-div {
+    background-color:#000080;
+    cursor: pointer;
+    display: inline-block;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    margin-right: 25px;
+}
+.fas.fa-plus{
+    color: #fff;
+    margin-right: 10px;
+    margin-left:5px;
+}
+
+/* Busca */
+.fas.fa-search{
+    position: absolute;
+    top: 12px;
+    right: 26px;
+}
+.search-div{
+    padding: 8px;
+    margin-top:15px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+
+/* Menu dropdown */
+.navbar ul li a {
+    color: #ffffff !important;
+  }
+  
+
+/* Rodapé */
+
+footer {
+    background-color:#393b3d;
+    height: 300px;
+    border-top: 2px solid rgb(61, 61, 66);
+}
+
+footer p{
+    color: #f5f5f5;
+    text-align: center;
+    top:50%;
+    position:relative;
+}
