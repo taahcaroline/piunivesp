@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 from .models import Fornecedores, Cliente, Produto, Servicos
-from .forms import FornecedoresForm, ProdutoForm, ClienteForm, ServicoForm
+from .forms import FornecedoresForm, ProdutoForm, ClienteForm, ServicoForm, NomeprodutoForm
 
 
 
@@ -28,10 +28,26 @@ def fornecedorcad(request):
              fornecedores.user = request.user
              fornecedores.save()
 
-            return redirect('/')
+            return redirect('fornecedorescadastrados.html')
     else:        
         form = FornecedoresForm()
         return render(request, 'cadfornecedores.html', {'form': form})
+
+# cadastro nome do produto
+ 
+@login_required 
+def produtotitle(request):
+    if request.method == 'POST':
+            form = NomeprodutoForm(request.POST)
+            if form.is_valid():
+             nomeproduto = form.save(commit=False)
+             nomeproduto.user = request.user
+             nomeproduto.save()
+
+            return redirect('/')
+    else:        
+        form = NomeprodutoForm()
+        return render(request, 'cadnomedoproduto.html', {'form': form})
 
 # lista de fornecedores
 @login_required 
@@ -42,7 +58,7 @@ def meusfornecedores(request):
     listafornecedores = paginator.get_page(page)
 
     return render(request, 'fornecedorescadastrados.html', {'listafornecedores' : listafornecedores})
-# cadastro produto
+# cadastro nota fiscal
 @login_required 
 def produtocad(request):
     if request.method == 'POST':

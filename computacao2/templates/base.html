@@ -35,7 +35,8 @@
                 </a>
                 <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'fornecedorcad' %}">Fornecedor</a>
-                  <a class="dropdown-item" href="{% url 'produtocad' %}">Produto</a>
+                  <a class="dropdown-item" href="{% url 'nomeproduto' %}">Produto</a>
+                  <a class="dropdown-item" href="{% url 'produtocad' %}">Nota Fiscal</a>
                   <a class="dropdown-item" href="{% url 'clientecad' %}">Cliente</a>
                   <a class="dropdown-item" href="{% url 'servicocad' %}">Serviço</a>
                 </div>
@@ -60,6 +61,20 @@
         </div>
       </nav>
      
+
+  ... <!-- VLibras -->
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+ <!-- Fim do código VLibras -->
       <div class="content">
         {% block content %}{% endblock %}
         </div>

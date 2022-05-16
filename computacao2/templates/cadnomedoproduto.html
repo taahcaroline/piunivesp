@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="offset-1 col-10 list-div">
-    <h3>Adicione uma nota fiscal</h3>
+    <h3>Adicione um novo produto</h3>
     <form method="POST">
         {% csrf_token %}
         {{ form | crispy }}
@@ -14,4 +14,3 @@
         }
         </script>
 </div>{% endblock %}
-

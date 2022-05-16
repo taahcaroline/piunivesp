@@ -10,9 +10,16 @@ class Fornecedores(models.Model):
         return self.forn
 
 # Formulário de cadastro de produto
+class Nomeproduto(models.Model):
+    nameproduto = models.CharField('Produto', max_length=200)
+
+    def __str__(self):
+        return self.nameproduto
+
+# Formulário de cadastro de nota fiscal
 
 class Produto(models.Model):
-    title = models.CharField('Produto', max_length=50)
+    item = models.ForeignKey(Nomeproduto, on_delete=models.CASCADE)
     data = models.DateField('Data de aquisição')
     fornecedor = models.ForeignKey(Fornecedores, on_delete=models.CASCADE)
     numero = models.CharField('Número da Nota Fiscal',  max_length=10)

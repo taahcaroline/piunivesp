@@ -51,3 +51,6 @@ footer p{
     top:50%;
     position:relative;
 }
+li, ul{
+    list-style-type: none;
+}
