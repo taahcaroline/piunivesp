@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <h5>Editar serviço</h5>
+    <form action="{% url 'editarcliente' %}" method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <a href="{% url 'editarcliente' %}"><input type="submit" class="btn btn-success" value="Salvar" onclick="msg()"></a>
+        <a href="{% url 'clientes' %}" class="btn btn-danger">Cancelar</a>
+    </form>
+    <script>
+        function msg() {
+            alert("Editado com sucesso");
+        }
+        </script>
+</div>{% endblock %}

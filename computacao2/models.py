@@ -48,8 +48,15 @@ class Cliente(models.Model):
 
 
 # Formulário de cadastro de serviços
+ESTADO_CHOICES = (
+    ('Não realizado', 'Não realizado'),
+    ('Concluído', 'Concluído')
+)
 class Servicos(models.Model):
    cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)
    servico = models.CharField('Serviço a ser executado', max_length=100)
    data = models.DateTimeField()
+   estado = models.CharField(max_length=15, choices=ESTADO_CHOICES, default='Não realizado')
  
+   def __str__(self):
+        return self.servico

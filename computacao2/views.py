@@ -1,6 +1,7 @@
 # Createfrom django.shortcuts import render
 
 # Create your views here.
+from multiprocessing import context
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -92,13 +93,84 @@ def clientecad(request):
 @login_required 
 def servicocad(request):
     if request.method == 'POST':
-            form = ClienteForm(request.POST)
+            form = ServicoForm(request.POST)
             if form.is_valid():
              servicos = form.save(commit=False)
              servicos.user = request.user
              servicos.save()
 
-            return redirect('/')
+            return redirect('demandas')
     else:        
         form = ServicoForm()
         return render(request, 'cadservico.html', {'form': form})
+
+
+#lista de demanda
+@login_required 
+def demandas(request):
+    serv = Servicos.objects.all()
+    # paginator = Paginator(serv, 3)
+    # page = request.GET.get('page')
+    # listademanda = paginator.get_page(page)
+    context = {
+        'serv': serv
+    }
+
+    return render(request, 'servicoscadastrados.html',  context)
+
+@login_required 
+#editar demandas
+def editdemandas(request, servicos_pk):
+    servicos = Servicos.objects.get(pk=servicos_pk)
+    form = ServicoForm(request.POST or None, instance=servicos)
+    if request.method == 'POST':
+            if form.is_valid():
+               form.save()
+               return redirect('demandas')
+    context ={
+        'form': form,
+    }
+    return render(request, 'editarservico.html',  context)
+            
+# deletar demandas
+@login_required 
+def demandasdelete(request, servicos_pk):
+    serv = Servicos.objects.get(pk=servicos_pk)
+    serv.delete()
+
+    return redirect('demandas')
+
+#lista de clientes
+@login_required 
+def listaclientes(request):
+    clientes = Cliente.objects.all()
+    # paginator = Paginator(serv, 3)
+    # page = request.GET.get('page')
+    # listademanda = paginator.get_page(page)
+    context = {
+        'clientes': clientes
+    }
+
+    return render(request, 'clientescadastrados.html',  context)
+
+@login_required 
+#editar clientes
+def editclientes(request, cliente_pk):
+    clientes = Cliente.objects.get(pk=cliente_pk)
+    form = ClienteForm(request.POST or None, instance=clientes)
+    if request.method == 'POST':
+            if form.is_valid():
+               form.save()
+               return redirect('clientescadastrados')
+    context ={
+        'form': form,
+    }
+    return render(request, 'editarcliente.html',  context)
+            
+# deletar demandas
+@login_required 
+def deleteclientes(request, cliente_pk):
+    client = Cliente.objects.get(pk=cliente_pk)
+    client.delete()
+
+    return redirect('clientescadastrados')
