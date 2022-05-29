@@ -26,6 +26,7 @@ class Produto(models.Model):
     quantidade = models.CharField('Quantidade',  max_length=10)
     marca = models.CharField('Marca do produto', max_length=10)
     garantia = models.CharField(max_length=10)
+    valornota = models.DecimalField('Valor total da nota', max_digits=10, decimal_places=5, default=0.00000)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

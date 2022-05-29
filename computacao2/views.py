@@ -5,8 +5,9 @@ from multiprocessing import context
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Fornecedores, Cliente, Produto, Servicos
+from .models import Fornecedores, Cliente, Nomeproduto, Produto, Servicos
 from .forms import FornecedoresForm, ProdutoForm, ClienteForm, ServicoForm, NomeprodutoForm
 
 
@@ -45,7 +46,7 @@ def produtotitle(request):
              nomeproduto.user = request.user
              nomeproduto.save()
 
-            return redirect('/')
+            return redirect('meusprodutos')
     else:        
         form = NomeprodutoForm()
         return render(request, 'cadnomedoproduto.html', {'form': form})
@@ -69,7 +70,7 @@ def produtocad(request):
              produto.user = request.user
              produto.save()
 
-            return redirect('/')
+            return redirect('notasfiscais')
     else:        
         form = ProdutoForm()
         return render(request, 'cadproduto.html', {'form': form})
@@ -84,7 +85,7 @@ def clientecad(request):
              cliente.user = request.user
              cliente.save()
 
-            return redirect('/')
+            return redirect('clientes')
     else:        
         form = ClienteForm()
         return render(request, 'cadcliente.html', {'form': form})
@@ -120,17 +121,42 @@ def demandas(request):
 
 @login_required 
 #editar demandas
-def editdemandas(request, servicos_pk):
-    servicos = Servicos.objects.get(pk=servicos_pk)
-    form = ServicoForm(request.POST or None, instance=servicos)
-    if request.method == 'POST':
-            if form.is_valid():
-               form.save()
-               return redirect('demandas')
-    context ={
-        'form': form,
-    }
-    return render(request, 'editarservico.html',  context)
+def editdemandas(request, id):
+    servicos = get_object_or_404(Servicos, pk=id)
+    form = ServicoForm(instance=servicos)
+    
+    if(request.method == 'POST'):
+        form = ServicoForm(request.POST, instance=servicos)
+        if (form.is_valid()):
+            servicos.save()
+            return redirect('demandas')
+        else:
+            return render(request, 'editarservico.html', {'form': form, 'servicos': servicos})
+    else: 
+        context = {
+            'form': form,
+            'servicos': servicos
+        }
+        return render(request, 'editarservico.html', context)
+# def editdemandas(request, pk):
+#     servicos = Servicos.objects.get(pk=pk)
+#     form = ServicoForm(request.POST or None, instance=servicos)
+#     if request.method == 'POST':
+#             if form.is_valid():
+#                form.save()
+#             return redirect('demandas')
+#     context ={
+#         'form': form,
+#     }
+#     return render(request, 'editarservico.html',  context)
+
+# def editdemandas(request, id):  
+#     servicos = Servicos.objects.get(pk=id)  
+#     form = ServicoForm(request.POST, instance = servicos)  
+#     if form.is_valid():  
+#         form.save()  
+#         return redirect("demandas")  
+#     return render(request, 'editarservico.html', {'servicos': servicos})  
             
 # deletar demandas
 @login_required 
@@ -153,24 +179,56 @@ def listaclientes(request):
 
     return render(request, 'clientescadastrados.html',  context)
 
-@login_required 
-#editar clientes
-def editclientes(request, cliente_pk):
-    clientes = Cliente.objects.get(pk=cliente_pk)
-    form = ClienteForm(request.POST or None, instance=clientes)
-    if request.method == 'POST':
-            if form.is_valid():
-               form.save()
-               return redirect('clientescadastrados')
-    context ={
-        'form': form,
-    }
-    return render(request, 'editarcliente.html',  context)
+# @login_required 
+# #editar clientes
+# def editclientes(request, cliente_pk):
+#     cliente = Cliente.objects.get(pk=cliente_pk)
+#     form = ClienteForm(request.POST or None, instance=cliente)
+#     if request.POST:
+#             if form.is_valid():
+#                form.save()
+#                return redirect('clientescadastrados')
+#     context ={
+#         'form': form,
+#         'cliente': cliente
+#     }
+#     return render(request, 'editarcliente.html',  context)
             
-# deletar demandas
+# deletar clientes
 @login_required 
-def deleteclientes(request, cliente_pk):
-    client = Cliente.objects.get(pk=cliente_pk)
-    client.delete()
+def deleteclientes(request, pk):
+    if request.method == 'POST':
+        try:       
+             cliente = Cliente.objects.get(id=pk)
+             cliente.delete()
+        except ObjectDoesNotExist:
+            print(f"Record is not found with the id: {pk}")
+    return redirect('clientes')
 
-    return redirect('clientescadastrados')
+
+
+#lista de produtos
+@login_required 
+def listaprodutos(request):
+    produtos = Nomeproduto.objects.all()
+    # paginator = Paginator(serv, 3)
+    # page = request.GET.get('page')
+    # listademanda = paginator.get_page(page)
+    context = {
+        'produtos': produtos
+    }
+
+    return render(request, 'produtoscadastrados.html',  context)
+
+#notas cadastradas
+@login_required 
+def notascadastradas(request):
+    notas = Produto.objects.all()
+    # paginator = Paginator(serv, 3)
+    # page = request.GET.get('page')
+    # listademanda = paginator.get_page(page)
+    context = {
+        'notas': notas
+    }
+
+    return render(request, 'notascadastradas.html',  context)

@@ -3,8 +3,8 @@
 {% block content %}
 <div class="offset-1 col-10 list-div">
 <h4>Serviços</h4>
-<a id="add-link" href="{% url 'clientecad' %}">
-<div class="col-2 add-div"><i class="fas fa-plus"></i>Adicionar cliente</i></div></a>
+<a id="add-link" href="{% url 'nomeproduto' %}">
+<div class="col-2 add-div"><i class="fas fa-plus"></i>Adicionar produto</i></div></a>
 <div class="col-9 search-div">
     <form method="GET" id=search-form>
     <input class="form-control" type="text" id="search" name="search" placeholder="Busca">
@@ -13,22 +13,21 @@
 <div class="card">
     <div class="card-body">
     
-       <h5>Clientes cadastrados</h5>
+       <h5>Produtos cadastrados</h5>
     <hr><table class="table table-striped">
         <thead>
             <tr>
-                <th>Cliente</th>
-                <th>Endereço</th>
-                <th>Cidade</th>
-                <th>Ações</th>
+                <th>Código</th>
+                <th>Produto</th>
+                
+                
             </tr></thead>
             <tbody>
-                {% for cliente in clientes %}
+                {% for nomeproduto in produtos %}
                 <tr>
-                    <td>{{cliente.nome}}</td>
-                    <td>{{cliente.endereco}} {{cliente.numero}}</td>
-                    <td>{{cliente.cidade}}</td>
-                    <td><a href="{% url 'deletarcliente' cliente.id %}"><button class="btn btn-danger">Excluir</button></a></td></tr>
+                    <td>{{nomeproduto.id}}</td>
+                    <td>{{nomeproduto.nameproduto}} 
+                    </tr>
                         {% endfor %}
             </tbody>
         

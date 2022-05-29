@@ -2,9 +2,9 @@
 {% block title %}Serviços{% endblock %}
 {% block content %}
 <div class="offset-1 col-10 list-div">
-<h4>Serviços</h4>
-<a id="add-link" href="{% url 'clientecad' %}">
-<div class="col-2 add-div"><i class="fas fa-plus"></i>Adicionar cliente</i></div></a>
+<h4>Nota Fiscal Eletrônica</h4>
+<a id="add-link" href="{% url 'produtocad' %}">
+<div class="col-2 add-div"><i class="fas fa-plus"></i>Adicionar NF</i></div></a>
 <div class="col-9 search-div">
     <form method="GET" id=search-form>
     <input class="form-control" type="text" id="search" name="search" placeholder="Busca">
@@ -13,22 +13,31 @@
 <div class="card">
     <div class="card-body">
     
-       <h5>Clientes cadastrados</h5>
+       <h5>Notas cadastradas</h5>
     <hr><table class="table table-striped">
         <thead>
             <tr>
-                <th>Cliente</th>
-                <th>Endereço</th>
-                <th>Cidade</th>
-                <th>Ações</th>
+                <th>Número da NF</th>
+                <th>Produto</th>
+                <th>Aquisição</th>
+                <th>Fornecedor</th>
+                <th>Marca</th>
+                <th>Quantidade</th>
+                <th>Valor da NF</th>
+                <th>Garantia</th>
             </tr></thead>
             <tbody>
-                {% for cliente in clientes %}
+                {% for produto in notas %}
                 <tr>
-                    <td>{{cliente.nome}}</td>
-                    <td>{{cliente.endereco}} {{cliente.numero}}</td>
-                    <td>{{cliente.cidade}}</td>
-                    <td><a href="{% url 'deletarcliente' cliente.id %}"><button class="btn btn-danger">Excluir</button></a></td></tr>
+                    <td>{{produto.numero}}</td>
+                    <td>{{produto.item}}</td>
+                    <td>{{produto.data}}</td>
+                    <td>{{produto.fornecedor}}</td>
+                    <td>{{produto.marca}}</td>
+                    <td>{{produto.quantidade}}</td>
+                    <td>{{produto.valornota}}</td>
+                    <td>{{produto.garantia}}</td>
+                   </tr>
                         {% endfor %}
             </tbody>
         

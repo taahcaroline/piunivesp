@@ -12,7 +12,7 @@
 </head> 
 <body>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar com texto</a>
+        <a class="navbar-brand" href="#">Gerhsafety</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#textoNavbar" aria-controls="textoNavbar" aria-expanded="false" aria-label="Alterna navegação">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,10 +35,10 @@
                 </a>
                 <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'fornecedorcad' %}">Fornecedor</a>
-                  <a class="dropdown-item" href="{% url 'nomeproduto' %}">Produto</a>
-                  <a class="dropdown-item" href="{% url 'produtocad' %}">Nota Fiscal</a>
-                  <a class="dropdown-item" href="{% url 'clientecad' %}">Cliente</a>
-                  <a class="dropdown-item" href="{% url 'servicocad' %}">Serviço</a>
+                  <a class="dropdown-item" href="{% url 'meusprodutos' %}">Produto</a>
+                  <a class="dropdown-item" href="{% url 'notasfiscais' %}">Cadastro de NF</a>
+                  <a class="dropdown-item" href="{% url 'clientes' %}">Cliente</a>
+                  <a class="dropdown-item" href="{% url 'demandas' %}">Demandas</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -79,7 +79,7 @@
         {% block content %}{% endblock %}
         </div>
         <footer>
-          <p>Tasks</p> 
+          <p>Gerhsafety. 2022</p> 
         </footer>
       
  <!-- JavaScript (Opcional) -->
