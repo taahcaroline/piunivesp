@@ -16,10 +16,10 @@ urlpatterns = [
     path('meusprodutos/', views.listaprodutos, name='meusprodutos'),
     path('notasfiscais/', views.notascadastradas, name='notasfiscais'),
 
+    path('demandas/<int:id>', views.demandasview, name='demandasview'),
     path('editarservico/<int:id>/', views.editdemandas, name='editarservico'),
     path('deletarservico/<int:servicos_pk>/', views.demandasdelete, name='deletarservico'),
 
     path('clientescadastrados/', views.listaclientes, name='clientes'),
     path('deletarcliente/<int:pk>/', views.deleteclientes, name='deletarcliente'),
-
 ]

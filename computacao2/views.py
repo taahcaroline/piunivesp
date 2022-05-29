@@ -119,44 +119,28 @@ def demandas(request):
 
     return render(request, 'servicoscadastrados.html',  context)
 
+def demandasview(request, id):
+    servicos = get_object_or_404(Servicos, pk=id)
+    return render(request, 'demandas.html', {'servicos': servicos} )
+
+
 @login_required 
 #editar demandas
+@login_required 
 def editdemandas(request, id):
-    servicos = get_object_or_404(Servicos, pk=id)
-    form = ServicoForm(instance=servicos)
+    servico = get_object_or_404(Servicos, pk=id)
+    form = ServicoForm(instance=servico)
     
     if(request.method == 'POST'):
-        form = ServicoForm(request.POST, instance=servicos)
+        form = ServicoForm(request.POST, instance=servico)
         if (form.is_valid()):
-            servicos.save()
+            servico.save()
             return redirect('demandas')
         else:
-            return render(request, 'editarservico.html', {'form': form, 'servicos': servicos})
+            return render(request, 'editarservico.html', {'form': form, 'servico': servico})
     else: 
-        context = {
-            'form': form,
-            'servicos': servicos
-        }
-        return render(request, 'editarservico.html', context)
-# def editdemandas(request, pk):
-#     servicos = Servicos.objects.get(pk=pk)
-#     form = ServicoForm(request.POST or None, instance=servicos)
-#     if request.method == 'POST':
-#             if form.is_valid():
-#                form.save()
-#             return redirect('demandas')
-#     context ={
-#         'form': form,
-#     }
-#     return render(request, 'editarservico.html',  context)
+        return render(request, 'editarservico.html', {'form': form, 'servico': servico})
 
-# def editdemandas(request, id):  
-#     servicos = Servicos.objects.get(pk=id)  
-#     form = ServicoForm(request.POST, instance = servicos)  
-#     if form.is_valid():  
-#         form.save()  
-#         return redirect("demandas")  
-#     return render(request, 'editarservico.html', {'servicos': servicos})  
             
 # deletar demandas
 @login_required 

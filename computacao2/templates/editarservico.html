@@ -3,7 +3,7 @@
 {% block content %}
 <div class="offset-1 col-10 list-div">
     <h5>Editar serviço</h5>
-    <form action="{% url 'editarservico' %}" method="POST">
+    <form method="POST">
         {% csrf_token %}
         {{ form | crispy }}
         <input type="submit" class="btn btn-success" value="Salvar" onclick="msg()">

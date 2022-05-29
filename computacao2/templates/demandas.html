@@ -21,21 +21,18 @@
             <tr>
                 <th>Cliente</th>
                 <th>Data para realização</th>
+                <th>Serviço</th>
                 <th>Status</th>
-                <th>Ações</th>
             </tr></thead>
             <tbody>
-                {% for servicos in serv %}
+        
                 <tr>
                     <td>{{servicos.cliente}}</td>
                     <td>{{servicos.data}}</td>
+                    <td>{{servicos.servico}}</td>
                     <td>{{servicos.estado}}</td>
-
-                    <td>
-                        <a href="{{servicos.id}}"><button class="btn btn-secondary">Visualizar</button></a></span>
-                        <a href="{% url 'editarservico' servicos.id %}"><button class="btn btn-warning">Editar</button></a>
-                        <a href="{% url 'deletarservico' servicos.id %}"><button class="btn btn-danger">Excluir</button></a></td></tr>
-                        {% endfor %}
+                    
+                   
             </tbody>
         
        </div>

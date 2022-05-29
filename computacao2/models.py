@@ -55,7 +55,7 @@ ESTADO_CHOICES = (
 )
 class Servicos(models.Model):
    cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)
-   servico = models.CharField('Serviço a ser executado', max_length=100)
+   servico = models.TextField('Serviço a ser executado', max_length=300)
    data = models.DateTimeField()
    estado = models.CharField(max_length=15, choices=ESTADO_CHOICES, default='Não realizado')
  
