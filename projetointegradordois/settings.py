@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-&a#&c!bif80e%%bcsphl_ee0qwi#&pac-(yqz4i^t7c%doo3_5'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'projetointegradordois.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_pi',
+        'USER': 'django',
+        'PASSWORD': '230663',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -134,3 +138,4 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

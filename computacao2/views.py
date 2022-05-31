@@ -6,19 +6,34 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
 
 from .models import Fornecedores, Cliente, Nomeproduto, Produto, Servicos
 from .forms import FornecedoresForm, ProdutoForm, ClienteForm, ServicoForm, NomeprodutoForm
+
+
+from django.template.loader import render_to_string
+import io
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+
+
+from django.template.loader import render_to_string
+
+
 
 
 
 def home(request):
     return render(request, 'home.html')
 
-
 def sobre(request):
     return render(request, 'sobre.html')
 
+
+    
 # cadastro fornecedor
  
 @login_required 
@@ -163,20 +178,7 @@ def listaclientes(request):
 
     return render(request, 'clientescadastrados.html',  context)
 
-# @login_required 
-# #editar clientes
-# def editclientes(request, cliente_pk):
-#     cliente = Cliente.objects.get(pk=cliente_pk)
-#     form = ClienteForm(request.POST or None, instance=cliente)
-#     if request.POST:
-#             if form.is_valid():
-#                form.save()
-#                return redirect('clientescadastrados')
-#     context ={
-#         'form': form,
-#         'cliente': cliente
-#     }
-#     return render(request, 'editarcliente.html',  context)
+
             
 # deletar clientes
 @login_required 

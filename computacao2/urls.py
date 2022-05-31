@@ -22,4 +22,6 @@ urlpatterns = [
 
     path('clientescadastrados/', views.listaclientes, name='clientes'),
     path('deletarcliente/<int:pk>/', views.deleteclientes, name='deletarcliente'),
+
+    
 ]
