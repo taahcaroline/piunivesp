@@ -1,6 +1,7 @@
 # Createfrom django.shortcuts import render
 
 # Create your views here.
+from codecs import getincrementaldecoder
 from multiprocessing import context
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -8,10 +9,11 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from pkg_resources import get_supported_platform
 
 
-from .models import Fornecedores, Cliente, Nomeproduto, Produto, Servicos
-from .forms import FornecedoresForm, ProdutoForm, ClienteForm, ServicoForm, NomeprodutoForm
+from .models import Fornecedores, Cliente, Nomeproduto, Produto, Servicos, Gestao
+from .forms import FornecedoresForm, ProdutoForm, ClienteForm, ServicoForm, NomeprodutoForm, GestaoForm
 
 
 from django.template.loader import render_to_string
@@ -24,14 +26,43 @@ from django.template.loader import render_to_string
 
 
 
-
-
 def home(request):
     return render(request, 'home.html')
 
 def sobre(request):
     return render(request, 'sobre.html')
 
+# decisao
+@login_required 
+def gestaoview(request):
+    if request.method == 'POST':
+            form = GestaoForm(request.POST)
+            if form.is_valid():
+             gestao = form.save(commit=False)
+             gestao.user = request.user
+             gestao.save()
+
+            return redirect('gestao')
+    else:        
+        form = GestaoForm()
+        return render(request, 'gestaocad.html', {'form': form})
+
+@login_required 
+def listadecisoes(request):
+    gerenc = Gestao.objects.all()
+    # paginator = Paginator(serv, 3)
+    # page = request.GET.get('page')
+    # listademanda = paginator.get_page(page)
+    context = {
+        'gerenc': gerenc
+    }
+
+    return render(request, 'gestao.html',  context)
+
+@login_required
+def decisoes(request, id):
+    gestao = get_object_or_404(Gestao, pk=id)
+    return render(request, 'decisoes.html', {'gestao': gestao} )
 
     
 # cadastro fornecedor

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Serviços{% endblock %}
+ {% block content %} 
+
+ 
+<div class="offset-1 col-10 list-div">
+<h4>Gestão</h4>
+<a id="add-link" href="{% url 'gestaocad' %}">
+<div class="col-2 add-div"><i class="fas fa-plus"></i>Adicionar</i></div></a>
+<div class="col-9 search-div">
+    <form method="GET" id=search-form>
+    <input class="form-control" type="text" id="search" name="search" placeholder="Busca">
+    <i class="fas fa-search" id="search-btn"></i></form>
+</div><div id="dados">
+<div class="card">
+    <div class="card-body">
+
+       <h5>Normas e políticas</h5>
+    <hr><table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Politicas</th>
+            </tr></thead>
+            <tbody>
+                
+                <tr>
+                    <td>{{gestao.titulo}}</td>
+                    <td>{{gestao.politicas}}</td>
+                    
+
+                    
+        
+                        
+            </tbody>
+        
+       </div>
+    </table>
+
+    </div>
+   
+
+<!-- import -->
+<!-- <div class="pagination">
+//     <span class="step-links">
+//         {% if listademanda.has_previous %}
+//         <a href="?page={{ listademanda.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+//         {% endif %}
+//         <span class="current">
+//             {{ listademanda.number }} de {{ listademanda.paginator.num_pages }}
+//         </span>
+//         {% if listademanda_next %}
+//         <a href="?page={{ tasks.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+//         {% endif %}
+//     </span>
+// </div> --> 
+{% endblock %}

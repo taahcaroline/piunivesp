@@ -62,3 +62,10 @@ class Servicos(models.Model):
    def __str__(self):
         return self.servico
 
+# Formulário de tomada de decisão
+class Gestao(models.Model):
+    titulo = models.CharField('Titulo', max_length=200)
+    politicas = models.TextField('Atualização', max_length=300)
+
+    def __str__(self):
+        return self.titulo
