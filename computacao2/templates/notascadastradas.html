@@ -18,25 +18,17 @@
         <thead>
             <tr>
                 <th>Número da NF</th>
-                <th>Produto</th>
                 <th>Aquisição</th>
                 <th>Fornecedor</th>
-                <th>Marca</th>
-                <th>Quantidade</th>
                 <th>Valor da NF</th>
-                <th>Garantia</th>
             </tr></thead>
             <tbody>
                 {% for produto in notas %}
                 <tr>
                     <td>{{produto.numero}}</td>
-                    <td>{{produto.item}}</td>
                     <td>{{produto.data}}</td>
                     <td>{{produto.fornecedor}}</td>
-                    <td>{{produto.marca}}</td>
-                    <td>{{produto.quantidade}}</td>
                     <td>{{produto.valornota}}</td>
-                    <td>{{produto.garantia}}</td>
                    </tr>
                         {% endfor %}
             </tbody>

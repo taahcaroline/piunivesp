@@ -18,7 +18,12 @@
         <thead>
             <tr>
                 <th>Código</th>
+                <th>Nota Fiscal</th>
                 <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Marca</th>
+                <th>Garantia</th>
+
                 
                 
             </tr></thead>
@@ -26,7 +31,11 @@
                 {% for nomeproduto in produtos %}
                 <tr>
                     <td>{{nomeproduto.id}}</td>
+                    <td>{{nomeproduto.numero}}</td>
                     <td>{{nomeproduto.nameproduto}} 
+                        <td>{{nomeproduto.quantidade}}</td>
+                        <td>{{nomeproduto.marca}}</td>
+                        <td>{{nomeproduto.garantia}}</td>
                     </tr>
                         {% endfor %}
             </tbody>

@@ -241,9 +241,7 @@ def listaprodutos(request):
 @login_required 
 def notascadastradas(request):
     notas = Produto.objects.all()
-    # paginator = Paginator(serv, 3)
-    # page = request.GET.get('page')
-    # listademanda = paginator.get_page(page)
+    
     context = {
         'notas': notas
     }

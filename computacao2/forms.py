@@ -15,7 +15,7 @@ class NomeprodutoForm(forms.ModelForm):
 class ProdutoForm(forms.ModelForm):
     class Meta:
      model = Produto
-     fields = 'item', 'data', 'fornecedor', 'numero', 'quantidade', 'marca', 'garantia', 'valornota'
+     fields = 'data', 'fornecedor', 'numero', 'valornota'
 
 class ClienteForm(forms.ModelForm):
     class Meta:

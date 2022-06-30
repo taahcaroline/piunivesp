@@ -11,7 +11,12 @@ class Fornecedores(models.Model):
 
 # Formulário de cadastro de produto
 class Nomeproduto(models.Model):
+    numero = models.CharField('Número da Nota Fiscal',  max_length=10)
     nameproduto = models.CharField('Produto', max_length=200)
+    quantidade = models.CharField('Quantidade',  max_length=10)
+    marca = models.CharField('Marca do produto', max_length=10)
+    garantia = models.CharField('Garantia', max_length=10)
+
 
     def __str__(self):
         return self.nameproduto
@@ -19,14 +24,10 @@ class Nomeproduto(models.Model):
 # Formulário de cadastro de nota fiscal
 
 class Produto(models.Model):
-    item = models.ForeignKey(Nomeproduto, on_delete=models.CASCADE)
     data = models.DateField('Data de aquisição')
     fornecedor = models.ForeignKey(Fornecedores, on_delete=models.CASCADE)
     numero = models.CharField('Número da Nota Fiscal',  max_length=10)
-    quantidade = models.CharField('Quantidade',  max_length=10)
-    marca = models.CharField('Marca do produto', max_length=10)
-    garantia = models.CharField(max_length=10)
-    valornota = models.DecimalField('Valor total da nota', max_digits=10, decimal_places=5, default=0.00000)
+    valornota = models.DecimalField('Valor total da nota', max_digits=10, decimal_places=2, default=0.00)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -56,6 +57,7 @@ ESTADO_CHOICES = (
 class Servicos(models.Model):
    cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)
    servico = models.TextField('Serviço a ser executado', max_length=300)
+   valor = models.DecimalField('Valor total do orçamento', max_digits=10, decimal_places=2, default=0.00)
    data = models.DateTimeField()
    estado = models.CharField(max_length=15, choices=ESTADO_CHOICES, default='Não realizado')
  
