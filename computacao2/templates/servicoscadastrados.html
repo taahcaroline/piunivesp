@@ -4,42 +4,36 @@
 
  
 <div class="offset-1 col-10 list-div">
-<h4>Serviços</h4>
-<a id="add-link" href="{% url 'servicocad' %}">
-<div class="col-2 add-div"><i class="fas fa-plus"></i>Adicionar demanda</i></div></a>
+<h4>Vagas disponíveis</h4>
+<a id="add-link" href="{% url 'vagascad' %}">
+<div class="col-2 add-div"><i class="fas fa-plus"></i>Cadastrar vaga</i></div></a>
 <div class="col-9 search-div">
-    <form method="GET" id=search-form>
-    <input class="form-control" type="text" id="search" name="search" placeholder="Busca">
-    <i class="fas fa-search" id="search-btn"></i></form>
-</div><div id="dados">
-<div class="card" id="renderPDF">
-    <div class="card-body" id="renderPDF">
+    
 
-       <h5>Serviços</h5>
-    <hr><table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Cliente</th>
-                <th>Data para realização</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr></thead>
-            <tbody>
-                {% for servicos in serv %}
-                <tr>
-                    <td>{{servicos.cliente}}</td>
-                    <td>{{servicos.data}}</td>
-                    <td>{{servicos.estado}}</td>
+    
+       <form action="{% url 'busca' %}" method="GET">
+        <input type="text" name="q" placeholder="Busque vagas...">
+        <button type="submit">Pesquisar</button>
+    </form><br>
+    <div id="content">
+        <div class="card" id="postagem">
+                {% for cadastrovagas in vagas %}
+                <h4 class="titulopost">{{cadastrovagas.cargo}}</h4>
+                <h5> {{cadastrovagas.empresa}}</h5>
+                <hr>
 
-                    <td>
-                        <a href="{{servicos.id}}"><button class="btn btn-secondary">Visualizar</button></a></span>
-                        <a href="{% url 'editarservico' servicos.id %}"><button class="btn btn-warning">Editar</button></a>
-                        <a href="{% url 'deletarservico' servicos.id %}"><button class="btn btn-danger">Excluir</button></a></td></tr>
+                    <p><i class="fa-solid fa-building"></i> {{cadastrovagas.modelo}}</p>
+                    <p><i class="fa-solid fa-location-dot"></i> {{cadastrovagas.localizacao}}</p>
+
+                   
+                      <p class="botao"><a href="{{cadastrovagas.id}}"><button class="btn btn-secondary">Visualizar vaga</button></a></span></p>
+                      <hr class="rodapepost">
+                     
                         {% endfor %}
-            </tbody>
+          
         
-       </div>
-    </table>
+       </div></div>
+
 
     </div>
   

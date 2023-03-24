@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4>Resultados</h4>
+    <p>Exibindo resultados para a escolha "{{ query }}":</p>
+    <ul>
+        <div id="content">
+            <div class="card" id="postagem">
+        {% for cadastrovagas in results %}
+        <h4 class="titulopost">{{cadastrovagas.cargo}}</h4>
+        <h5> {{cadastrovagas.empresa}}</h5>
+        <hr>
+
+            <p><i class="fa-solid fa-building"></i> {{cadastrovagas.modelo}}</p>
+            <p><i class="fa-solid fa-location-dot"></i> {{cadastrovagas.localizacao}}</p>
+         
+              <p class="botao"><a href="{% url 'demandasview' cadastrovagas.id %}"><button class="btn btn-secondary">Visualizar vaga</button></a></span></p>
+              <hr class="rodapepost">
+               
+                {% endfor %}
+      </div></div>
+    </ul>
+{% endblock %}

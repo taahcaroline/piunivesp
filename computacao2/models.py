@@ -2,26 +2,47 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-# Formulário de cadastro de fornecedor
-class Fornecedores(models.Model):
-    forn = models.CharField('Fornecedor', max_length=500)
+# # Formulário de cadastro de fornecedor
+# class Fornecedores(models.Model):
+#     forn = models.CharField('Fornecedor', max_length=500)
+
+#     def __str__(self):
+#         return self.forn
+
+# Formulário de cadastro de vagas
+
+
+MODELO_CHOICES = (
+    ('Home Office', 'Home Office'),
+    ('Hibrido', 'Híbrido'),
+    ('Presencial', 'Presencial'),
+)
+
+
+ESCOLARIDADE_CHOICES = (
+    ('Ensino Fundamental Incompleto', 'Ensino Fundamental Incompleto'),
+    ('Ensino Fundamental Completo', 'Ensino Fundamental Completo'),
+    ('Ensino Médio Completo', 'Ensino Médio Completo'),
+    ('Ensino Superior Incompleto', 'Ensino Superior Incompleto'),
+    ('Ensino Superior completo', 'Ensino Superior completo'),
+)
+class Cadastrovagas(models.Model):
+    cargo = models.CharField('Cargo', max_length=200)
+    empresa = models.CharField('Empresa', max_length=200)
+    descricao = models.TextField('Descrição', max_length=500)
+    vagas = models.CharField('Quantidade de vagas',  max_length=10)
+    escolaridade = models.CharField('Escolaridade',  choices=ESCOLARIDADE_CHOICES, default='Ensino Médio Completo', max_length=30)
+    salario = models.DecimalField('Salário', max_digits=10, decimal_places=2, default=0.00)
+    modelo = models.CharField('Modelo de trabalho', choices=MODELO_CHOICES, default='Presencial', max_length=11)
+    localizacao = models.CharField('Localização', max_length=30)
+    horassemanais = models.CharField('Horas semanais', max_length=6)
+    
+
 
     def __str__(self):
-        return self.forn
+        return self.cargo
 
-# Formulário de cadastro de produto
-class Nomeproduto(models.Model):
-    numero = models.CharField('Número da Nota Fiscal',  max_length=10)
-    nameproduto = models.CharField('Produto', max_length=200)
-    quantidade = models.CharField('Quantidade',  max_length=10)
-    marca = models.CharField('Marca do produto', max_length=10)
-    garantia = models.CharField('Garantia', max_length=10)
-
-
-    def __str__(self):
-        return self.nameproduto
-
-# Formulário de cadastro de nota fiscal
+""" # Formulário de cadastro de nota fiscal
 
 class Produto(models.Model):
     data = models.DateField('Data de aquisição')
@@ -70,4 +91,4 @@ class Gestao(models.Model):
     politicas = models.TextField('Atualização', max_length=300)
 
     def __str__(self):
-        return self.titulo
+        return self.titulo """

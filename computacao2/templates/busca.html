@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'busca' %}" method="GET">
+    <input type="text" name="q" placeholder="Pesquisar...">
+    <button type="submit">Pesquisar</button>
+</form>
+
+
+
+
+
+{% endblock %}

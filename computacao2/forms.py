@@ -1,33 +1,12 @@
 from django import forms
-from .models import Fornecedores, Nomeproduto, Produto, Cliente, Servicos, Gestao
+from .models import Cadastrovagas
 
 
-class FornecedoresForm(forms.ModelForm):
+
+class CadastrovagasForm(forms.ModelForm):
     class Meta:
-     model = Fornecedores
+     model = Cadastrovagas
      fields = '__all__'
-
-class NomeprodutoForm(forms.ModelForm):
-    class Meta:
-     model = Nomeproduto
-     fields = '__all__'
-
-class ProdutoForm(forms.ModelForm):
-    class Meta:
-     model = Produto
-     fields = 'data', 'fornecedor', 'numero', 'valornota'
-
-class ClienteForm(forms.ModelForm):
-    class Meta:
-     model = Cliente
-     fields = '__all__'
-
-class ServicoForm(forms.ModelForm):
-    class Meta:
-     model = Servicos
-     fields = '__all__'
-
-class GestaoForm(forms.ModelForm):
-    class Meta:
-     model = Gestao
-     fields = '__all__'
+    #  widgets = {
+    # #         'modelo': forms.Select(attrs={'class': 'form-control'})
+    #  }

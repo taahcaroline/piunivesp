@@ -4,42 +4,27 @@
 
  
 <div class="offset-1 col-10 list-div">
-<h4>Serviços</h4>
-<a id="add-link" href="{% url 'servicocad' %}">
-<div class="col-2 add-div"><i class="fas fa-plus"></i>Adicionar demanda</i></div></a>
-<div class="col-9 search-div">
-    <form method="GET" id=search-form>
-    <input class="form-control" type="text" id="search" name="search" placeholder="Busca">
-    <i class="fas fa-search" id="search-btn"></i></form>
-</div>
-<div class="card">
-    <div class="card-body">
+<h4>Vagas</h4>
+
+
+
+
     
-       <h5>Serviços</h5>
-    <hr><table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Cliente</th>
-                <th>Data para realização</th>
-                <th>Serviço</th>
-                <th>Status</th>
-                <th>Valor do orçamento</th>
-            </tr></thead>
-            <tbody>
-        
-                <tr>
-                    <td>{{servicos.cliente}}</td>
-                    <td>{{servicos.data}}</td>
-                    <td>{{servicos.servico}}</td>
-                    <td>{{servicos.estado}}</td>
-                    <td>{{servicos.valor}}</td>
-                   
-            </tbody>
-        
-       </div>
-    </table>
-    
+     
    
+    <div id="content">
+        <div class="card" id="postagem">
+            <h4>{{cadastrovagas.cargo}}</h4>
+            <h5> {{cadastrovagas.empresa}}</h5>
+            <hr>
+           <p><i class="fa-solid fa-pen"></i> {{cadastrovagas.descricao}}</p>
+           <p><i class="fa-solid fa-briefcase"> </i> {{cadastrovagas.vagas}}</i></p>
+           <p><i class="fa-solid fa-graduation-cap"> </i> {{cadastrovagas.escolaridade}}</i></p>
+            <p><i class="fa-solid fa-building"></i> {{cadastrovagas.modelo}}</i></p>
+            <p><i class="fa-solid fa-business-time"> </i> {{cadastrovagas.horassemanais}}</i></p>
+            <p><i class="fa-solid fa-brazilian-real-sign"> </i> {{cadastrovagas.salario}}</p>
+            <p><i class="fa-solid fa-location-dot"></i> {{cadastrovagas.localizacao}}</p>
+   </div></div>
 <!-- <div class="pagination">
 //     <span class="step-links">
 //         {% if listademanda.has_previous %}

@@ -1,3 +1,21 @@
+﻿#header{
+    background-color: rgb(5, 15, 73);
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+#headertext{
+    text-align:center;
+    background-color:#fcf5f5;
+    margin: 0 auto;
+    width: 500px;
+    height: 100px;
+
+}
+
+.navbar navbar-dark bg-primary{
+    background-color: rgb(5, 15, 73);
+}
 /* Botão de adicionar */
 #add-link{
     text-decoration:none;
@@ -31,18 +49,14 @@
 }
 
 
-/* Menu dropdown */
-.navbar ul li a {
-    color: #ffffff !important;
-  }
-  
+
 
 /* Rodapé */
 
 footer {
-    background-color:#393b3d;
+    background-color:rgb(5, 15, 73);;
     height: 300px;
-    border-top: 2px solid rgb(61, 61, 66);
+    border-top: 2px solid rgb(5, 15, 73);;
 }
 
 footer p{
@@ -54,3 +68,77 @@ footer p{
 li, ul{
     list-style-type: none;
 }
+
+.card{
+    
+
+    border-radius: 80px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: rgb(20, 4, 125);
+    box-shadow: 0px 0px 0px 3px rgba(99, 94, 94, 0.31) inset;
+    -webkit-box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.31) inset;
+    -moz-box-shadow: 0px 0px 0px 3px rgba(64, 62, 62, 0.31) inset;
+    padding:20px;
+    
+}
+
+.h3{
+    font-family: cursive;
+   
+}
+.container{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-column-gap: 20px;
+    
+    
+}
+#content, #postagem{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+hr.rodapepost{
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #194ce4;
+    padding: 0 0 0 12px;
+}
+.botao{
+    text-align: center;
+}
+button.btn.btn-secondary{
+width: 150px;
+height: 40px;
+font-family: verdana;
+background-color: #6495ED;
+text-align: center;
+}
+
+h5.titulopost{
+    color:	#063760;
+}
+
+#postagem {
+        border-radius: 30px;
+    }
+
+a:link {
+    color:#ffffff;
+    text-decoration:none;
+      }
+a:visited {
+    color:#999999;
+    text-decoration:none;
+      }
+a:hover {
+    color:#000000;
+    text-decoration:underline;
+      }
+a:active {
+    color:#ffffff;
+    text-decoration:underline;
+    background-color:#000000;
+      }
