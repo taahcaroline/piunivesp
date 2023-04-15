@@ -13,8 +13,5 @@ urlpatterns = [
     path('busca/', views.busca, name='busca'),
     # path('resultados/', resultados, name='resultados'),
 
-    # path('clientescadastrados/', views.listaclientes, name='clientes'),
-    # path('deletarcliente/<int:pk>/', views.deleteclientes, name='deletarcliente'),
-
     
 ]
